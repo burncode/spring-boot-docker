@@ -1,6 +1,6 @@
-FROM java:8
+FROM java:7
 VOLUME /tmp
-ADD hello-spring-boot.jar app.jar
+ADD spring-boot-docker-0.1.0.jar app.jar
 RUN sh -c 'touch /app.jar'
 ENV JAVA_OPTS=""
 EXPOSE 8080
