@@ -57,3 +57,7 @@ Error response from daemon: Get https://registry.ng.bluemix.net/v1/users/: EOF
 
 When you are not connected to the IBM Containers registry host, you can run only a limited number of IBM Containers commands. Check the spelling of the host URL and try again. If the host URL is correct, open a new command line or terminal window before retrying.
 
+Dec 21 12:14:12 MA213129A-HFD Docker[607]: Socket.TCPV4.read tcp:198.23.117.106:443: caught Uwt.Uwt_error(Uwt.ECONNRESET, "uwt_read", "") returning Eof
+Dec 21 12:14:12 MA213129A-HFD Docker[607]: PPP.listen callback caught Uwt.Uwt_error(Uwt.ENOTCONN, "shutdown", "")
+Dec 21 12:14:12 MA213129A-HFD Docker[607]: Socket.TCPV4.read tcp:198.23.117.106:443: caught Uwt.Uwt_error(Uwt.ECONNRESET, "uwt_read", "") returning Eof
+
