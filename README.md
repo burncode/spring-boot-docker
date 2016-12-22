@@ -42,6 +42,7 @@ Storing client certificates in /Users/a213129/.ice/certs/...
 
 Storing client certificates in /Users/a213129/.ice/certs/containers-api.ng.bluemix.net/6535e67d-f9aa-419a-9330-c87b901268ad...
 Client ID:              e8ecacb0-6802-4937-8bdc-55c2bc37b071
+Client Secret:     qU0wO2tI3iG3xO6kW4kQ2nP8lX1fX2lW0oJ2rW3kX2eP6iO5iK
 OK
 The client certificates were retrieved.
 
