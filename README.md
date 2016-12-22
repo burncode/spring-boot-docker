@@ -51,7 +51,11 @@ https://apicm.aetna.com/healthcare/prod/v3/auth/oauth2/authorize
 
 Token URL:
 
- 
+ $ cf login -a https://api.ng.bluemix.net
+API endpoint: https://api.ng.bluemix.net
+FAILED
+Error performing request: Get https://api.ng.bluemix.net/v2/info: EOF
+
 
 https://apicm.aetna.com/healthcare/prod/v3/auth/oauth2/token
 
