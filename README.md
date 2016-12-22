@@ -54,6 +54,8 @@ Token URL:
  
 
 https://apicm.aetna.com/healthcare/prod/v3/auth/oauth2/token
+
+https://api2.aetna.com/healthcare/prod//hello/oauth
 OK
 The client certificates were retrieved.
 
