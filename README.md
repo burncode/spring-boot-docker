@@ -1,81 +1,55 @@
 # spring-boot-docker
-bash-3.2$ cf ic -v init
+Deploying Java Spring Boot program as Bluemix Container
+Aetna uses Java Spring Boot framework for its internal application development. So, a sample Java Spring Boot program is created and uploaded on GitHub. The intend of this document is to describe the steps required to build/test sample program as container on local host and finally to Bluemix pubic. 
+Aetna team may skip the below “Prerequisites” as these are already installed on their Mac machine.
+Prerequisites
+¥	You have a git client installed locally.
+¥	You have signed up for IBM Bluemix (Public) and have an ID to log in with.
+¥	Install Docker locally on your machine. This will give you access to the Docker command-line tools.
+¥	Install the IBM Bluemix command-line tools, which will require installing the prerequisite Cloud Foundry command line tools.
+Instructions for this tutorial are written assuming you are using OS X, although they can probably be adapted to other platforms easily.
+Build the Spring Boot Container on localhost
+You need to build the Docker container for Java Spring Boot program locally before pushing it up to the Bluemix containers repository. All the required source code files including jar file are uploaded on GitHub. 
+¥	Open a terminal and clone the repository, checking out:
+ 	$git clone https://github.com/vksinghibm/spring-boot-docker.git
+ 	$cd spring-boot-docker
 
-REQUEST: [2016-12-21T11:58:47-05:00]
-POST /UAALoginServerWAR/oauth/token HTTP/1.1
-Host: login.ng.bluemix.net
-Accept: application/json
-Authorization: [PRIVATE DATA HIDDEN]
-Connection: close
-Content-Type: application/x-www-form-urlencoded
-User-Agent: go-cli 6.22.2+a95e24c / darwin
+¥	If the clone does not work, go to https://github.com/vksinghibm/spring-boot-docker and download the zip file. Copy the spring-boot-docker-master.zip file in your favorite location, unzip the file and go to directory spring-boot-docker
+¥	Now build the Docker image :
+ 	$cd docker
+ 	$docker build -t aetna_spring_boot_image .
+Verify the image is built and available on your local host machine
+ 	$docker images | grep aetna_spring_boot_image
+•	Finally run the container and test it
+ 	$docker run --name aetna_spring_boot_localcontainer -d -p 8080:8080 aetna_spring_boot_image
+Verify the container is up & running.
+ 	$docker ps -a | grep aetna
+ 	Test the container 
+ 	$ curl http://localhost:8080
+ 	Hello Aetna Hartford, This is Bluemix container with spring framework
 
-grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzODgxMjI1Yi0yZDI5LTRkYmMtOWVkYi1mOTI5N2QzMjJhYmEtciIsInN1YiI6ImY5MzAyMzQ0LTYxNjctNDE1Yi1hMDQ1LWU0ZDBkMTAyNzM4ZSIsInNjb3BlIjpbIm9wZW5pZCIsInVhYS51c2VyIiwiY2xvdWRfY29udHJvbGxlci5yZWFkIiwicGFzc3dvcmQud3JpdGUiLCJjbG91ZF9jb250cm9sbGVyLndyaXRlIl0sImlhdCI6MTQ4MjMzNzE5MywiZXhwIjoxNDg0OTI5MTkzLCJjaWQiOiJjZiIsImNsaWVudF9pZCI6ImNmIiwiaXNzIjoiaHR0cHM6Ly91YWEubmcuYmx1ZW1peC5uZXQvb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJncmFudF90eXBlIjoicGFzc3dvcmQiLCJ1c2VyX25hbWUiOiJBdmFuY2hhYTFAYWV0bmEuY29tIiwib3JpZ2luIjoidWFhIiwidXNlcl9pZCI6ImY5MzAyMzQ0LTYxNjctNDE1Yi1hMDQ1LWU0ZDBkMTAyNzM4ZSIsInJldl9zaWciOiI0NTcxY2E4ZiIsImF1ZCI6WyJjZiIsIm9wZW5pZCIsInVhYSIsImNsb3VkX2NvbnRyb2xsZXIiLCJwYXNzd29yZCJdfQ.GV67f2ddFyaGrNGAymCq-Nz-ObUOPjhwsgYaK4F563c&scope=
+If you see above message on console it means the container is deployed successfully.
+Also, you access the container in your favorite browser by typing http://localhost:8080
+Push the Spring Boot Container to Bluemix and start it running
+•	Firstly, log into Bluemix and initialize the container runtime:
+$cf login -a  https://api.ng.bluemix.net -u vksingh@us.ibm.com -p xxxxxx -o Aetna_EA -s AET-test
 
-RESPONSE: [2016-12-21T11:58:48-05:00]
-HTTP/1.1 200 OK
-Connection: close
-Transfer-Encoding: chunked
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate,no-store
-Content-Security-Policy: default-src 'self' www.ibm.com 'unsafe-inline';
-Content-Type: application/json;charset=UTF-8
-Date: Wed, 21 Dec 2016 16:58:47 GMT
-Expires: 0
-Pragma: no-cache,no-cache
-Server: Apache-Coyote/1.1
-Strict-Transport-Security: max-age=2592000 ; includeSubDomains
-X-Backside-Transport: OK OK,OK OK
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-Global-Transaction-Id: 472403215
-X-Powered-By: Servlet/3.1
-X-Xss-Protection: 1; mode=block
-
-6de
-{"access_token":"[PRIVATE DATA HIDDEN]","token_type":"[PRIVATE DATA HIDDEN]","refresh_token":"[PRIVATE DATA HIDDEN]","expires_in":1209600,"scope":"cloud_controller.read password.write cloud_controller.write openid uaa.user","jti":"148fb551-2613-42a8-83a2-789b22cd63c8"}
-0
-
-
-Deleting old configuration file...
-Generating client certificates for IBM Containers...
-Storing client certificates in /Users/a213129/.ice/certs/...
-
-Storing client certificates in /Users/a213129/.ice/certs/containers-api.ng.bluemix.net/6535e67d-f9aa-419a-9330-c87b901268ad...
-Client ID:              e8ecacb0-6802-4937-8bdc-55c2bc37b071
-Client Secret:     qU0wO2tI3iG3xO6kW4kQ2nP8lX1fX2lW0oJ2rW3kX2eP6iO5iK
-Authorize URL:
-
-https://apicm.aetna.com/healthcare/prod/v3/auth/oauth2/authorize
-
- 
-
-Token URL:
-
- $ cf login -a https://api.ng.bluemix.net
-API endpoint: https://api.ng.bluemix.net
-FAILED
-Error performing request: Get https://api.ng.bluemix.net/v2/info: EOF
+$cf ic init
+•	Tag your built image to prepare it for upload to the remote registry:
+$docker tag aetna_spring_boot registry.ng.bluemix.net/etbe/aetna_spring_boot
+The image is tagged with Bluemix repository prefix and then actual registry name. For Bluemix Aetna_EA organization, the registry name is etbe. 
+Now actually push the image to the remote registry (this may take a little while):
+$docker push registry.ng.bluemix.net/etbe/aetna_spring_boot
+Verify the image
+$ cf ic images | grep aetna_spring_boot
 
 
-https://apicm.aetna.com/healthcare/prod/v3/auth/oauth2/token
-
-https://api2.aetna.com/healthcare/prod//hello/oauth
-OK
-The client certificates were retrieved.
-
-Checking local Docker configuration...
-OK
-
-Authenticating with the IBM Containers registry host registry.ng.bluemix.net...
-FAILED
-The attempt to authenticate with the IBM Containers registry host registry.ng.bluemix.net was unsuccessful.
-****Flag --email has been deprecated, will be removed in 1.13.
-Error response from daemon: Get https://registry.ng.bluemix.net/v1/users/: EOF
-
-
-When you are not connected to the IBM Containers registry host, you can run only a limited number of IBM Containers commands. Check the spelling of the host URL and try again. If the host URL is correct, open a new command line or terminal window before retrying.
-
-Dec 21 12:14:12 MA213129A-HFD Docker[607]: Socket.TCPV4.read tcp:198.23.117.106:443: caught Uwt.Uwt_error(Uwt.ECONNRESET, "uwt_read", "") returning Eof
-Dec 21 12:14:12 MA213129A-HFD Docker[607]: PPP.listen callback caught Uwt.Uwt_error(Uwt.ENOTCONN, "shutdown", "")
-Dec 21 12:14:12 MA213129A-HFD Docker[607]: Socket.TCPV4.read tcp:198.23.117.106:443: caught Uwt.Uwt_error(Uwt.ECONNRESET, "uwt_read", "") returning Eof
+•	Finally run the container 
+$cf ic group create -p 8080 -m 256 --min 1 --auto --name aetnaspringbootconatiner-group -n aetnaspringbootcontainer -d mybluemix.net registry.ng.bluemix.net/etbe/aetna_spring_boot
+Once the container has started running, the Bluemix CLI will print out the container ID. You typically only need the first few characters - enough to uniquely identify it (e.g. abc1234).
+Verify the running container
+$cf ic ps | grep aetna
+You can also check at Bluemix console https://console.ng.bluemix.net/dashboard/apps
+Note: it takes few minutes to configure networking for container group. 
+Once container is created completely, you can access the “Routes” from dashboard. For current example the route is https://aetnaspringbootcontainer.mybluemix.net/
 
