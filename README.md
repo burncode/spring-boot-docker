@@ -22,31 +22,40 @@ Build the Spring Boot Container on localhost
 You need to build the Docker container for Java Spring Boot program locally before pushing it up to the Bluemix containers repository. All the required source code files including jar file are uploaded on GitHub. 
 
 ¥	Open a terminal and clone the repository, checking out:
- 	$git clone https://github.com/vksinghibm/spring-boot-docker.git
+ 	
+  $git clone https://github.com/vksinghibm/spring-boot-docker.git
  	$cd spring-boot-docker
 
-¥	If the clone does not work, go to https://github.com/vksinghibm/spring-boot-docker and download the zip file. Copy the spring-boot-docker-master.zip file in your favorite location, unzip the file and go to directory spring-boot-docker
+¥	If the clone does not work, go to 
+https://github.com/vksinghibm/spring-boot-docker and download the zip file. Copy the spring-boot-docker-master.zip file in your favorite location, unzip the file and go to directory spring-boot-docker
 
 ¥	Now build the Docker image :
- 	$cd docker
- 	$docker build -t aetna_spring_boot_image .
+ 	
+  $cd docker
+ 	
+  $docker build -t aetna_spring_boot_image .
 
 Verify the image is built and available on your local host machine
- 	$docker images | grep aetna_spring_boot_image
+ 	
+  $docker images | grep aetna_spring_boot_image
 
 Finally run the container and test it
- 	$docker run --name aetna_spring_boot_localcontainer -d -p 8080:8080 aetna_spring_boot_image
+ 	
+  $docker run --name aetna_spring_boot_localcontainer -d -p 8080:8080 aetna_spring_boot_image
 
 Verify the container is up & running.
- 	$docker ps -a | grep aetna
+ 	
+  $docker ps -a | grep aetna
  	
   Test the container 
- 	$ curl http://localhost:8080
+ 	
+  $ curl http://localhost:8080
  	
   Hello Aetna Hartford, This is Bluemix container with spring framework
 
 If you see above message on console it means the container is deployed successfully.
 Also, you access the container in your favorite browser by typing 
+
 http://localhost:8080
 
 Push the Spring Boot Container to Bluemix and start it running
@@ -69,6 +78,7 @@ Now actually push the image to the remote registry (this may take a little while
 $docker push registry.ng.bluemix.net/etbe/aetna_spring_boot
 
 Verify the image
+
 $ cf ic images | grep aetna_spring_boot
 
 
