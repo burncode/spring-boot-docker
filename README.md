@@ -1,5 +1,6 @@
-# spring-boot-docker
+
 Deploying Java Spring Boot program as Bluemix Container
+========================================================
 
 Aetna uses Java Spring Boot framework for its internal application development. So, a sample Java Spring Boot program is created and uploaded on GitHub. The intend of this document is to describe the steps required to build/test sample program as container on local host and finally to Bluemix pubic. 
 Aetna team may skip the below “Prerequisites” as these are already installed on their Mac machine.
