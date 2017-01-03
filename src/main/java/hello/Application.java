@@ -11,7 +11,7 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        return "Hello Aetna Hartford, This is Bluemix container with spring framework";
+        return "Hello Customer, This is Bluemix container with spring framework";
     }
 
     public static void main(String[] args) {
