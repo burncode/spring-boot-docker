@@ -24,10 +24,13 @@ You need to build the Docker container for Java Spring Boot program locally befo
 ¥	Open a terminal and clone the repository, checking out:
  	
   $git clone https://github.com/vksinghibm/spring-boot-docker.git
- 	$cd spring-boot-docker
+ 	
+  $cd spring-boot-docker
 
 ¥	If the clone does not work, go to 
-https://github.com/vksinghibm/spring-boot-docker and download the zip file. Copy the spring-boot-docker-master.zip file in your favorite location, unzip the file and go to directory spring-boot-docker
+
+https://github.com/vksinghibm/spring-boot-docker and download the zip file. 
+Copy the spring-boot-docker-master.zip file in your favorite location, unzip the file and go to directory spring-boot-docker
 
 ¥	Now build the Docker image :
  	
@@ -96,5 +99,7 @@ You can also check at Bluemix console https://console.ng.bluemix.net/dashboard/a
 
 Note: it takes few minutes to configure networking for container group. 
 
-Once container is created completely, you can access the “Routes” from dashboard. For current example the route is https://aetnaspringbootcontainer.mybluemix.net/
+Once container is created completely, you can access the “Routes” from dashboard. For current example the route is 
+
+https://aetnaspringbootcontainer.mybluemix.net/
 
