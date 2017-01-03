@@ -42,15 +42,18 @@ Verify the container is up & running.
  	
   Test the container 
  	$ curl http://localhost:8080
- 	Hello Aetna Hartford, This is Bluemix container with spring framework
+ 	
+  Hello Aetna Hartford, This is Bluemix container with spring framework
 
 If you see above message on console it means the container is deployed successfully.
-Also, you access the container in your favorite browser by typing http://localhost:8080
+Also, you access the container in your favorite browser by typing 
+http://localhost:8080
 
 Push the Spring Boot Container to Bluemix and start it running
 ==================================================================
 
 ¥	Firstly, log into Bluemix and initialize the container runtime:
+
 $cf login -a  https://api.ng.bluemix.net -u vksingh@us.ibm.com -p xxxxxx -o Aetna_EA -s AET-test
 
 $cf ic init
@@ -58,9 +61,13 @@ $cf ic init
 ¥	Tag your built image to prepare it for upload to the remote registry:
 
 $docker tag aetna_spring_boot registry.ng.bluemix.net/etbe/aetna_spring_boot
+
 The image is tagged with Bluemix repository prefix and then actual registry name. For Bluemix Aetna_EA organization, the registry name is etbe. 
+
 Now actually push the image to the remote registry (this may take a little while):
+
 $docker push registry.ng.bluemix.net/etbe/aetna_spring_boot
+
 Verify the image
 $ cf ic images | grep aetna_spring_boot
 
@@ -71,6 +78,7 @@ $cf ic group create -p 8080 -m 256 --min 1 --auto --name aetnaspringbootconatine
 mybluemix.net registry.ng.bluemix.net/etbe/aetna_spring_boot
 
 Once the container has started running, the Bluemix CLI will print out the container ID. You typically only need the first few characters - enough to uniquely identify it (e.g. abc1234).
+
 Verify the running container
 $cf ic ps | grep aetna
 
